@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package tokeniser;
+
+option go_package = "tiktoken/sdk/go-tokeniser";
+
+service Tiktokeniser {
+  rpc ListEncodingNames(ListEncodingNamesRequest) returns(ListEncodingNamesReply) {}
+  rpc GetTokenNumByEncodingName(GetTokenNumByEncodingNameRequest) returns(GetTokenNumReply) {}
+  rpc GetTokenNumByModel(GetTokenNumByModelRequest) returns(GetTokenNumReply) {}
+}
+
+message ListEncodingNamesRequest {}
+
+message ListEncodingNamesReply {
+  repeated string encoding_names = 1;
+}
+
+message GetTokenNumByEncodingNameRequest {
+  string encoding_name = 1;
+  repeated string text = 2;
+}
+
+message GetTokenNumReply {
+  repeated int64 n_tokens = 1;
+}
+
+message GetTokenNumByModelRequest {
+  string model = 1;
+  repeated string text = 2;
+}
+
